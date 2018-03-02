@@ -80,76 +80,20 @@ public class Sort {
     }
   }
 
-  /**
-   * 归并排序 很重要 本质是递归的排序过程
-   */
+
+
+
+
   public static void mergeSort(int[] arr) {
 
-    __mergeSort (arr, 0, arr.length - 1);
-
   }
 
-  /**
-   * 对 arr数组进行 前闭后闭的范围进行排序
-   *
-   * @param r 最后一个元素的位置
-   */
-  private static void __mergeSort(int[] arr, int l, int r) {
-    if (l >= r) {
+
+  private static void __mergeSort(int[] arr, int low, int high) {
+    if (low >= high) {
       return;
     }
-    int mid = (l + r) / 2;
-    __mergeSort (arr, l, mid);
-    __mergeSort (arr, mid + 1, r);
-
-    // 进行merge操作
-    __merge (arr, l, mid, r);
   }
-
-  /**
-   * 将arr[l...mid]和arr[mid+1...r]两部分进行归并
-   *
-   * @param l 左边
-   * @param mid 中间
-   * @param r 右边
-   */
-  private static void __merge(int[] arr, int l, int mid, int r) {
-    // 临时空间； 要处理的arr空间一样大
-    int[] aux = new int[r - l + 1];
-
-    /**
-     * 要处理的元素复制到aux
-     */
-    for (int i = l; i <= r; i++) {
-      aux[i - l] = arr[i];
-    }
-
-    /**
-     * 两个索引，指向排好序的两部分
-     */
-    int i = l,  // 左边的索引
-
-        j = mid + 1; // 右边的索引
-
-    // 遍历 l --> r 判断k的位置应该是谁
-    for (int k = l; k <= r; k++) {
-      // 判断索引的合法性
-      if (i > mid) {
-        arr[k] = aux[j - l];
-        j++;
-      } else if (j > r) {
-        arr[k] = aux[i - l];
-        i++;
-      } else if (aux[i - l] < aux[j - l]) {        // 查看两边的第一个元素哪个大
-        arr[k] = aux[i - l];
-        i++;
-      } else {
-        arr[k] = aux[j - l];
-        j++;
-      }
-    }
-  }
-
   public static void main(String[] args) {
     int[] arr = {1, 3, 2, 4, 9, 6, 5};
     mergeSort (arr);
