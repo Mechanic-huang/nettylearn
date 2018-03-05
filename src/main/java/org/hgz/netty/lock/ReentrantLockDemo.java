@@ -16,6 +16,12 @@ public class ReentrantLockDemo {
     reentrantLock.lock ();
     reentrantLock.unlock ();
 
+    try {
+      reentrantLock.lockInterruptibly();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
 
   }
 }
