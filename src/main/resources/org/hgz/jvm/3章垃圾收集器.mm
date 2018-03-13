@@ -180,7 +180,7 @@
 <node CREATED="1520391561761" ID="ID_1452532996" MODIFIED="1520391650785" TEXT="2. &#x5899;&#x949f;&#x65f6;&#x95f4;&#x548c;CPU&#x65f6;&#x95f4;&#x533a;&#x522b; :  &#x5899;&#x949f;&#x5305;&#x62ec;&#x7b49;&#x5f85;IO&#x7b49;&#xff0c; CPU&#x4e0d;&#x5305;&#x62ec;&#xff0c;&#x4f46;&#x662f;CPU&#x662f;&#x591a;&#x4e2a;cpu&#x65f6;&#x95f4;&#x7684;&#x53e0;&#x52a0; &#xff0c;&#x6240;&#x4ee5;"/>
 </node>
 </node>
-<node CREATED="1520391683744" ID="ID_417023916" MODIFIED="1520403623618" TEXT="10.  &#x5783;&#x573e;&#x6536;&#x96c6;&#x5668;&#x53c2;&#x6570;">
+<node CREATED="1520391683744" FOLDED="true" ID="ID_417023916" MODIFIED="1520837607970" TEXT="10.  &#x5783;&#x573e;&#x6536;&#x96c6;&#x5668;&#x53c2;&#x6570;">
 <node CREATED="1520403662558" ID="ID_1494979146" MODIFIED="1520403663451" TEXT="-XX:+UseSerialGC">
 <node CREATED="1520403670168" ID="ID_1011306132" MODIFIED="1520403671218" TEXT="Jvm&#x8fd0;&#x884c;&#x5728;Client&#x6a21;&#x5f0f;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x503c;&#xff0c;&#x6253;&#x5f00;&#x6b64;&#x5f00;&#x5173;&#x540e;&#xff0c;&#x4f7f;&#x7528;Serial + Serial Old&#x7684;&#x6536;&#x96c6;&#x5668;&#x7ec4;&#x5408;&#x8fdb;&#x884c;&#x5185;&#x5b58;&#x56de;&#x6536; "/>
 </node>
@@ -257,8 +257,7 @@
       &#23545;&#35937;&#20998;&#37197;&#20027;&#35201;&#26159;&#22312;&#26032;&#29983;&#20195;&#30340;Eden&#21306;&#36827;&#34892;&#20998;&#37197;&#65292;&#23569;&#25968;&#24773;&#20917;&#20250;&#20998;&#37197;&#21040;&#32769;&#24180;&#20195;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1520405789897" ID="ID_1958975003" MODIFIED="1520405815550" TEXT="minor GC &#x4e0e; FullGc / Major Gc">
 <node CREATED="1520405817361" ID="ID_388715190" MODIFIED="1520405866477" TEXT="Minor GC1. &#x53d1;&#x751f;&#x5728;&#x65b0;&#x751f;&#x4ee3;&#xff0c; &#x901f;&#x5ea6;&#x5feb;&#xff0c; &#x6267;&#x884c;&#x9891;&#x7e41;"/>
@@ -269,10 +268,10 @@
 <node CREATED="1520406058408" ID="ID_1553837439" MODIFIED="1520406077237" TEXT="-XX:PretenureSizeThreshold&#x9;&#x5927;&#x4e8e;&#x8fd9;&#x4e2a;&#x503c;&#x5f97;&#x76f4;&#x63a5;&#x8fdb;&#x5165;&#x8001;&#x5e74;&#x4ee3;"/>
 </node>
 <node CREATED="1520406096666" ID="ID_1503976100" MODIFIED="1520406107126" TEXT="&#x957f;&#x671f;&#x5b58;&#x6d3b;&#x7684;&#x5bf9;&#x8c61;&#x8fdb;&#x5165;&#x8001;&#x5e74;&#x4ee3;"/>
-<node CREATED="1520406143969" ID="ID_682476602" MODIFIED="1520406164566" TEXT="&#x52a8;&#x6001;&#x5e74;&#x9f84;&#x5224;&#x65ad;">
+<node CREATED="1520406143969" ID="ID_682476602" MODIFIED="1520837612228" TEXT="&#x52a8;&#x6001;&#x5e74;&#x9f84;&#x5224;&#x65ad;">
 <node CREATED="1520406168042" ID="ID_1807558046" MODIFIED="1520406238981" TEXT="survivor&#x4e2d; &#x76f8;&#x540c;&#x5e74;&#x9f84;&#x7684;&#x6240;&#x6709;&#x5bf9;&#x8c61;&#x5927;&#x5c0f;&#x7684;&#x7efc;&#x5408;&#x5927;&#x4e8e;survivor&#x7684;&#x4e00;&#x534a;&#xff0c;&#x5e74;&#x9f84;&#x5927;&#x4e8e;&#x6216;&#x7b49;&#x4e8e;&#x8be5;&#x5e74;&#x9f84;&#x7684;&#x5bf9;&#x8c61;&#x76f4;&#x63a5;&#x8fdb;&#x5165;&#x8001;&#x5e74;&#x4ee3;"/>
 </node>
-<node CREATED="1520406257776" ID="ID_287934696" MODIFIED="1520406262733" TEXT="&#x7a7a;&#x95f4;&#x5206;&#x914d;&#x62c5;&#x4fdd;">
+<node CREATED="1520406257776" FOLDED="true" ID="ID_287934696" MODIFIED="1520837610010" TEXT="&#x7a7a;&#x95f4;&#x5206;&#x914d;&#x62c5;&#x4fdd;">
 <node CREATED="1520406267128" ID="ID_356232479" MODIFIED="1520406565913" TEXT="&#x8bf4;&#x660e;&#xff1a; &#x5728;&#x4e00;&#x6b21;Minor GC&#x4e4b;&#x524d;&#x8981;&#x68c0;&#x67e5;&#x8001;&#x5e74;&#x4ee3;&#x6700;&#x5927;&#x8fde;&#x7eed;&#x53ef;&#x7528;&#x7a7a;&#x95f4;&#x662f;&#x5426;&#x5927;&#x4e8e;&#x65b0;&#x751f;&#x4ee3;&#x7684;&#x6240;&#x6709;&#x5bf9;&#x8c61; &#x5982;&#x679c;&#x6210;&#x7acb;&#x5219;minor gc &#x662f;&#x5b89;&#x5168;&#x7684;&#xa;&#x5982;&#x679c;&#x4e0d;&#x6210;&#x7acb;&#xff0c;&#x5219;&#x67e5;&#x770b; HandlePromotionFailure&#x8bbe;&#x7f6e;&#x662f;&#x5426;&#x5141;&#x8bb8;&#x62c5;&#x4fdd;&#x5931;&#x8d25;&#xff0c;&#x5982;&#x679c;&#x53ef;&#x4ee5;&#x5219;&#x4f1a;&#x68c0;&#x67e5;&#x5386;&#x6b21;&#x8fdb;&#x5165;&#x8001;&#x5e74;&#x4ee3;&#x7684;&#x5bf9;&#x8c61;&#x7684;&#x5e73;&#x5747;&#x5927;&#x5c0f;&#xff0c;&#x5982;&#x679c;&#x5927;&#x4e8e;&#x5219;&#x8fdb;&#x884c;&#x4e00;&#x6b21; minorGC &#xff0c;&#x5c3d;&#x7ba1;minorgc&#x6709;&#x98ce;&#x9669;&#xff1b;&#x5982;&#x679c;&#x5c0f;&#x4e8e;&#x6216;&#x8005;HandlePromotionFailure&#x8bbe;&#x7f6e;&#x4e0d;&#x5141;&#x8bb8;&#x6bdb;&#x7ebf;&#xff0c;&#x90a3;&#x4e48;&#x5c31;&#x4f1a;&#x6539;&#x6210;&#x4e00;&#x6b21;fullGC&#xa;"/>
 </node>
 </node>
