@@ -1,0 +1,200 @@
+<!--scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。-->
+<!--scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。-->
+<!-- debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+
+
+<configuration scan="true" scanPeriod="10" debug="false">
+
+    <contextName>myAppName</contextName>
+    <property name="ROOT_DIR" value="./log" />
+
+
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+
+
+    <!--<appender>有两个必要属性name和class。name指定appender名称，class指定appender的全限定名。-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" >
+        <!-- 日志格式化 -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--<file>：被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值。-->
+        <file>testFile.log</file>
+        <!--<append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。-->
+        <append>true</append>
+        <!--<prudent>：如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false。-->
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点-->
+    <!--<file>：被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值。-->
+    <!--<append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。-->
+    <!--<encoder>：对记录事件进行格式化。（具体参数稍后讲解 ）-->
+    <!--<rollingPolicy>:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。-->
+    <!--<triggeringPolicy >: 告知 RollingFileAppender 合适激活滚动。-->
+    <!--<prudent>：当为true时，不支持FixedWindowRollingPolicy。支持TimeBasedRollingPolicy，但是有两个限制，1不支持也不允许文件压缩，2不能设置file属性，必须留空。-->
+
+
+
+    <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。有以下子节点-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--<fileNamePattern>必要节点，包含文件名及“%d”转换符， “%d”可以包含一个java.text.SimpleDateFormat指定的时间格式，-->
+            <!--如：%d{yyyy-MM}。如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender 的file字节点可有可无，-->
+            <!--通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；-->
+            <!--如果没设置file，活动文件的名字会根据fileNamePattern 的值，每隔一段时间改变一次。“/”或者“\”会被当做目录分隔符。-->
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--<maxHistory>:-->
+            <!--可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，-->
+            <!--且<maxHistory>是6，则只保存最近6个月的文件，删除之前的旧文件。注意，删除旧文件是，那些为了归档而创建的目录也会被删除。-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <!--<encoder>：-->
+        <!--负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。-->
+        <!--目前PatternLayoutEncoder 是唯一有用的且默认的encoder ，有一个<pattern>节点，用来设置日志的输入格式。使用“%”加“转换符”方式，如果要输出“%”，则必须用“\”对“\%”进行转义。-->
+        <!--
+        c {length } lo {length } logger {length } 如 %logger{35}  logger name {}标识logger名称的长度
+        C{length } 或者 class {length } 输出执行记录请求的调用者的全限定名。参数与上面的一样。尽量避免使用，除非执行速度不造成任何问题。
+        contextName 或 cn 输出上下文名称。
+        时间示例：
+            %d	2006-10-20 14:06:49,812
+            %date	2006-10-20 14:06:49,812
+            %date{ISO8601}	2006-10-20 14:06:49,812
+            %date{HH:mm:ss.SSS}	14:06:49.812
+            %date{dd MMM yyyy ;HH:mm:ss.SSS}	20 oct. 2006;14:06:49.812
+        F / file	输出执行记录请求的java源文件名。尽量避免使用，除非执行速度不造成任何问题。
+        L / line	输出执行日志请求的行号。尽量避免使用，除非执行速度不造成任何问题。
+        m / msg / message
+        输出应用程序提供的信息。
+
+        M / method	输出执行日志请求的方法名。尽量避免使用，除非执行速度不造成任何问题。
+        n	输出平台先关的分行符“\n”或者“\r\n”。
+        p / le / level	输出日志级别。
+        r / relative	输出从程序启动到创建日志记录的时间，单位是毫秒
+        t / thread	输出产生日志的线程名。
+        replace(p ){r, t}	p 为日志内容，r 是正则表达式，将p 中符合r 的内容替换为t 。
+            例如， "%replace(%msg){'\s', ''}"
+
+
+            格式修饰符，与转换符共同使用：
+
+        可选的格式修饰符位于“%”和转换符之间。
+
+        第一个可选修饰符是左对齐 标志，符号是减号“-”；
+        接着是可选的最小宽度 修饰符，
+        用十进制数表示。如果字符小于最小宽度，则左填充或右填充，默认是左填充（即右对齐），
+        填充符为空格。如果字符大于最小宽度，字符永远不会被截断。
+        最大宽度 修饰符，符号是点号"."后面加十进制数。如果字符大于最大宽度，则从前面截断。
+        点符号“.”后面加减号“-”在加数字，表示从尾部截断。
+        -->
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+
+
+
+        <!--<filter>:-->
+
+        <!--过滤器，执行一个过滤器会有返回个枚举值
+        ，即 DENY(拒绝)，NEUTRAL（中性），ACCEPT（接受） 其中之一。
+        返回DENY，日志将立即被抛弃不再经过其他过滤器；
+        返回NEUTRAL，有序列表里的下个过滤器过接着处理日志；
+        返回ACCEPT，日志会被立即处理，不再经过剩余过滤器。-->
+
+        <!--过滤器被添加到<Appender> 中，为<Appender> 添加一个或多个过滤器后，可以用任意条件对日志进行过滤。
+        <Appender> 有多个过滤器时，按照配置顺序执行。
+
+
+        下面是几个常用的过滤器：
+        1.
+        LevelFilter： 级别过滤器，根据日志级别进行过滤。如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志。有以下子节点：
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+
+        <level>:设置过滤级别
+
+        <onMatch>:用于配置符合过滤条件的操作
+
+        <onMismatch>:用于配置不符合过滤条件的操作
+
+        2.
+        ThresholdFilter： 临界值过滤器，过滤掉低于指定临界值的日志。当日志级别等于或高于临界值时，过滤器返回NEUTRAL；当日志级别低于临界值时，日志会被拒绝。
+        过滤掉所有低于INFO级别的日志
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        3.
+        EvaluatorFilter： 求值过滤器，评估、鉴别日志是否符合指定条件。有一下子节点：  略 用的时候再查
+
+
+
+
+        -->
+
+
+    </appender>
+
+    <!--按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志。-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>test.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>tests.%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+
+        <!--<encoder>：-->
+        <!--负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。-->
+        <!--目前PatternLayoutEncoder 是唯一有用的且默认的encoder ，有一个<pattern>节点，用来设置日志的输入格式。使用“%”加“转换符”方式，如果要输出“%”，则必须用“\”对“\%”进行转义。-->
+
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <appender name="STDOUT1" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>1 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %contextName - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!--additivity的作用在于 children-logger是否使用 rootLogger配置的appender进行输出。
+    false：表示只用当前logger的appender-ref。 true：表示当前logger的appender-ref和rootLogger的appender-ref都有效。-->
+
+
+
+    <!--level:-->
+    <!--用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。-->
+    <!--如果未设置此属性，那么当前loger将会继承上级的级别。-->
+
+    <!--addtivity: 是否向上级loger传递打印信息。默认是true 只与appender有关，不论对应的logger的级别是否对应。<loger>可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个loger。-->
+
+    <logger name="HELLO" level="INFO" additivity="true">
+
+        <appender-ref ref="STDOUT1" />
+    </logger>
+
+
+
+    <!--<logger name="HELLO" level="DEBUG" additivity="true"/>-->
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
