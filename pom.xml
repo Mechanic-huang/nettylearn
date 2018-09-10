@@ -140,11 +140,19 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.trypticon.hex/hex-util -->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.trypticon.hex/hex-util &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.trypticon.hex</groupId>-->
+            <!--<artifactId>hex-util</artifactId>-->
+            <!--<version>0.8.0</version>-->
+        <!--</dependency>-->
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
         <dependency>
-            <groupId>org.trypticon.hex</groupId>
-            <artifactId>hex-util</artifactId>
-            <version>0.8.0</version>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.3.0</version>
         </dependency>
 
 
